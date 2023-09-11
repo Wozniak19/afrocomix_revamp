@@ -25,32 +25,31 @@ class _AfroComixState extends State<AfroComix> {
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
-          drawer: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-            child: Drawer(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(
-                      'assets/Letiarts_Logo.png',
-                      height: 100,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // drawer: Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+          //   child: Drawer(
+          //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          //     child: Column(
+          //       children: [
+          //         Padding(
+          //           padding: const EdgeInsets.all(8.0),
+          //           child: Image.asset(
+          //             'assets/Letiarts_Logo.png',
+          //             height: 100,
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            centerTitle: true,
             title: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
-                'assets/Letiarts_Icon.png',
-                height: 40,
+                'assets/Letiarts_Logo.png',
+                height: 20,
               ),
             ),
             actions: [
