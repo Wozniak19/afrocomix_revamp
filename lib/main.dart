@@ -1,66 +1,82 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:afrocomix/Tabs/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const afroComix());
+  runApp(const AfroComix());
 }
 
-class afroComix extends StatefulWidget {
-  const afroComix({super.key});
+class AfroComix extends StatefulWidget {
+  const AfroComix({super.key});
 
   @override
-  State<afroComix> createState() => _afroComixState();
+  State<AfroComix> createState() => _AfroComixState();
 }
 
-class _afroComixState extends State<afroComix> {
+class _AfroComixState extends State<AfroComix> {
   @override
-  static final String title = 'Afrocomix';
+  String title = 'Afrocomix';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              title,
+          drawer: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+            child: Drawer(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      'assets/Letiarts_Logo.png',
+                      height: 100,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            // backgroundColor: Colors.amber.shade300,
+          ),
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
             centerTitle: true,
-            leading: IconButton(
-              onPressed: () {
-                print('hello');
-              },
-              icon: Icon(Icons.menu),
+            title: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/Letiarts_Icon.png',
+                height: 40,
+              ),
             ),
             actions: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.notifications_none),
+              Container(
+                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(.4)),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.search),
+                ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.search),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.more_vert),
-              )
             ],
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.red, Colors.blue],
-                    begin: Alignment.bottomRight,
-                    end: Alignment.topLeft),
-              ),
-            ),
-            elevation: 20, // titleSpacing: 6,
-            bottom: TabBar(
-              // isScrollable: true,
+            elevation: 0,
+          ),
+          body: TabBarView(
+            children: [
+              Home(),
+              buildPage('Feed Page'),
+              buildPage('Profile Page'),
+            ],
+          ),
+          bottomNavigationBar: Container(
+            color: Colors.red,
+            child: TabBar(
               indicatorColor: Colors.white,
               indicatorWeight: 5,
-              tabs: [
+              tabs: const [
                 Tab(
                   icon: Icon(Icons.home),
                   text: 'Home',
@@ -73,15 +89,6 @@ class _afroComixState extends State<afroComix> {
                   icon: Icon(Icons.face),
                   text: 'Profile',
                 ),
-              ],
-            ),
-          ),
-          body: SafeArea(
-            child: TabBarView(
-              children: [
-                buildPage('Home Page'),
-                buildPage('Feed Page'),
-                buildPage('Profile Page'),
               ],
             ),
           ),
