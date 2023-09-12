@@ -1,3 +1,29 @@
+// ignore_for_file: prefer_const_constructors
+class CardItem {
+  final String assetImage;
+  final String title;
+  final String subtitle;
+  const CardItem({required this.assetImage, required this.title, required this.subtitle});
+}
+
+List<CardItem> items = [
+  CardItem(
+    assetImage: 'assets/batman.png',
+    title: 'Batman 2',
+    subtitle: '\$ 49',
+  ),
+  CardItem(
+    assetImage: 'assets/spiderman.png',
+    title: 'The Amazing Spiderman',
+    subtitle: '\$ 66',
+  ),
+  CardItem(
+    assetImage: 'assets/xmen.png',
+    title: 'The X-men',
+    subtitle: '\$ 45',
+  ),
+];
+
 class Comics {
   final String name;
   final int pages;
@@ -11,32 +37,20 @@ List<Comics> comicsList = [
   Comics(
     name: 'Spider-Man',
     pages: 32,
-    genre: 'Superhero',
-    assets: 'assets/spiderman.jpg',
-  ),
-  Comics(
-    name: 'Big Nate',
-    pages: 89,
-    genre: 'Comedy',
-    assets: 'assets/bignate.jpg',
+    genre: 'Adventure',
+    assets: 'assets/spiderman.png',
   ),
   Comics(
     name: 'Batman',
     pages: 28,
     genre: 'Superhero',
-    assets: 'assets/batman.jpg',
-  ),
-  Comics(
-    name: 'Boondocks',
-    pages: 15,
-    genre: 'Lifestyle',
-    assets: 'assets/boondocks.jpg',
+    assets: 'assets/batman.png',
   ),
   Comics(
     name: 'X-Men',
     pages: 36,
     genre: 'Superhero',
-    assets: 'assets/x_men.jpg',
+    assets: 'assets/xmen.png',
   ),
   // Add more comic instances with online image links here.
 ];
