@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
           ],
         ),
         SizedBox(
-          height: 256,
+          height: 260,
           child: Expanded(
             child: ListView.separated(
                 padding: EdgeInsets.all(16),
@@ -88,7 +88,7 @@ class _HomeState extends State<Home> {
 }
 
 Widget buildCard({required CardItem item}) => Container(
-      width: 300,
+      width: 200,
       child: Column(
         children: [
           Expanded(
