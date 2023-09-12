@@ -2,25 +2,29 @@
 class CardItem {
   final String assetImage;
   final String title;
-  final String subtitle;
-  const CardItem({required this.assetImage, required this.title, required this.subtitle});
+  final String price;
+  final String genre;
+  const CardItem({required this.assetImage, required this.title, required this.price, required this.genre});
 }
 
 List<CardItem> items = [
   CardItem(
     assetImage: 'assets/batman.png',
     title: 'Batman 2',
-    subtitle: '\$ 49',
+    price: '\$ 49',
+    genre: 'Adventure',
   ),
   CardItem(
     assetImage: 'assets/spiderman.png',
     title: 'The Amazing Spiderman',
-    subtitle: '\$ 66',
+    price: '\$ 66',
+    genre: 'Adventure',
   ),
   CardItem(
     assetImage: 'assets/xmen.png',
     title: 'The X-men',
-    subtitle: '\$ 45',
+    price: '\$ 45',
+    genre: 'Adventure',
   ),
 ];
 
@@ -52,5 +56,4 @@ List<Comics> comicsList = [
     genre: 'Superhero',
     assets: 'assets/xmen.png',
   ),
-  // Add more comic instances with online image links here.
 ];
