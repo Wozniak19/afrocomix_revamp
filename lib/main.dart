@@ -54,7 +54,8 @@ class _AfroComixState extends State<AfroComix> {
             ),
             actions: [
               Container(
-                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(.4)),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.grey.withOpacity(.4)),
                 child: IconButton(
                   onPressed: () {},
                   icon: Icon(Icons.search),
