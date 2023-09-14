@@ -15,144 +15,167 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          //Top Hits
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 8.0),
-                child: "Top hits".text.size(19).bold.align(TextAlign.left).make(),
-              ),
-              IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            'assets/Letiarts_Logo.png',
+            height: 20,
           ),
-          TopHits(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Divider(
-              thickness: 2,
+        ),
+        actions: [
+          Container(
+            decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(.4)),
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.search),
             ),
           ),
-          //Top comics
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: "Top Comics".text.size(19).bold.align(TextAlign.left).make(),
+        ],
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            //Top Hits
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: "Top hits".text.size(19).bold.align(TextAlign.left).make(),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
+              ],
+            ),
+            TopHits(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Divider(
+                thickness: 2,
               ),
-              IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
-            ],
-          ),
-          Container(
-            height: context.screenHeight * 0.3,
-            color: Colors.transparent,
-            width: context.screenWidth,
-            child: ListView.builder(
-              // physics: FixedExtentScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: List.generate(
-                    3,
-                    (index) => Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(16),
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (contex) => intro(item: items[index], index: index, context: context)));
-                        },
-                        child: SizedBox(
-                          width: context.screenWidth * 0.7,
-                          height: context.screenHeight * 0.1,
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CircleAvatar(
-                                    backgroundColor: index + 1 == 1 ? Colors.black : Colors.transparent,
-                                    child: Center(
-                                        child: ("${index + 1}.").toString().text.scale(1.5).bold.color(index + 1 == 1 ? Colors.amber : Colors.white).make())),
-                              ),
-                              Image.asset(
-                                comicsList[index].assets,
-                                height: 50,
-                                width: 50,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    comicsList[index].name.text.semiBold.scale(1.2).overflow(TextOverflow.ellipsis).make(),
-                                    comicsList[index].genre.text.semiBold.scale(0.8).gray400.make(),
-                                  ],
+            ),
+            //Top comics
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: "Top Comics".text.size(19).bold.align(TextAlign.left).make(),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
+              ],
+            ),
+            Container(
+              height: context.screenHeight * 0.3,
+              color: Colors.transparent,
+              width: context.screenWidth,
+              child: ListView.builder(
+                // physics: FixedExtentScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: List.generate(
+                      3,
+                      (index) => Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(16),
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (contex) => intro(item: items[index], index: index, context: context)));
+                          },
+                          child: SizedBox(
+                            width: context.screenWidth * 0.7,
+                            height: context.screenHeight * 0.1,
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: CircleAvatar(
+                                      backgroundColor: index + 1 == 1 ? Colors.black : Colors.transparent,
+                                      child: Center(
+                                          child: ("${index + 1}.").toString().text.scale(1.5).bold.color(index + 1 == 1 ? Colors.amber : Colors.white).make())),
                                 ),
-                              )
-                            ],
+                                Image.asset(
+                                  comicsList[index].assets,
+                                  height: 50,
+                                  width: 50,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      comicsList[index].name.text.semiBold.scale(1.2).overflow(TextOverflow.ellipsis).make(),
+                                      comicsList[index].genre.text.semiBold.scale(0.8).gray400.make(),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-          ),
-          SizedBox(
-            height: context.screenHeight * 0.03,
-          ),
-          //Explore some genres
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: "Explore some genres".text.size(19).bold.align(TextAlign.left).make(),
-              ),
-              IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
-            ],
-          ),
-          GenreTile(),
-          //New releases
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: "New Releases".text.size(19).bold.align(TextAlign.left).make(),
-              ),
-              IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
-            ],
-          ),
-          ScrollCard(),
-          SizedBox(
-            height: context.screenHeight * 0.03,
-          ),
-          //New Releases
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: "Hot news".text.size(19).bold.align(TextAlign.left).make(),
-              ),
-              IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
-            ],
-          ),
-          Releases(),
-          SizedBox(
-            height: context.screenHeight * 0.03,
-          ),
+            SizedBox(
+              height: context.screenHeight * 0.03,
+            ),
+            //Explore some genres
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: "Explore some genres".text.size(19).bold.align(TextAlign.left).make(),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
+              ],
+            ),
+            GenreTile(),
+            //New releases
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: "New Releases".text.size(19).bold.align(TextAlign.left).make(),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
+              ],
+            ),
+            ScrollCard(),
+            SizedBox(
+              height: context.screenHeight * 0.03,
+            ),
+            //New Releases
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: "Hot news".text.size(19).bold.align(TextAlign.left).make(),
+                ),
+                IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
+              ],
+            ),
+            Releases(),
+            SizedBox(
+              height: context.screenHeight * 0.03,
+            ),
 
-          SizedBox(
-            height: context.screenHeight * .1,
-          ),
-        ],
+            SizedBox(
+              height: context.screenHeight * .1,
+            ),
+          ],
+        ),
       ),
     );
   }
