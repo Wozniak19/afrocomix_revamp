@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
-
-import 'classes.dart';
+import 'package:palette_generator/palette_generator.dart';
+import '../utils/classes.dart';
 
 class ScrollCard extends StatefulWidget {
   const ScrollCard({super.key});
@@ -26,10 +26,22 @@ class _ScrollCardState extends State<ScrollCard> {
     );
   }
 
+  Future<PaletteGenerator> generatePalette(String imageUrl) async {
+    final PaletteGenerator paletteGenerator = await PaletteGenerator.fromImageProvider(
+      AssetImage(imageUrl),
+      size: Size(50, 50), // You can specify the size for analysis.
+    );
+
+    return paletteGenerator;
+  }
+
   Widget buildCard({required CardItem item}) => InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (contex) => intro(item: item)));
+        onTap: () async {
+          final String imageUrl = item.assetImage; // Replace with your image URL
+          final PaletteGenerator palette = await generatePalette(imageUrl);
+          Color dominantColor = palette.dominantColor!.color;
+          Navigator.push(context, MaterialPageRoute(builder: (contex) => intro(item: item, dominantColor: dominantColor)));
         },
         child: Container(
           decoration: BoxDecoration(
@@ -56,9 +68,11 @@ class _ScrollCardState extends State<ScrollCard> {
           ),
         ),
       );
-  Widget intro({required CardItem item}) => Material(
+
+  Widget intro({required CardItem item, required Color dominantColor}) => Material(
         child: Scaffold(
           extendBodyBehindAppBar: true,
+          backgroundColor: dominantColor.withOpacity(.8),
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -66,7 +80,8 @@ class _ScrollCardState extends State<ScrollCard> {
           body: Container(
             height: context.screenHeight,
             width: context.screenWidth,
-            color: Colors.grey.shade900,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [Colors.transparent, Colors.grey.shade900], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Column(
@@ -83,7 +98,7 @@ class _ScrollCardState extends State<ScrollCard> {
                       ),
                     ),
                   ),
-                  item.title.text.scale(2).bold.make(),
+                  item.title.text.scale(2).bold.center.make(),
                   item.genre.text.scale(1.5).semiBold.gray400.make(),
                 ],
               ),

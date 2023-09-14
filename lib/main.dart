@@ -37,14 +37,14 @@ class _AfroComixState extends State<AfroComix> {
           //           padding: const EdgeInsets.all(8.0),
           //           child: Image.asset(
           //             'assets/Letiarts_Logo.png',
-          //             height: 100,
+          //             height: 25,
           //           ),
           //         ),
           //       ],
           //     ),
           //   ),
           // ),
-          extendBodyBehindAppBar: true,
+          // extendBodyBehindAppBar: true,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: Padding(

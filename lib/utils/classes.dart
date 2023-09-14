@@ -1,4 +1,7 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/material.dart';
+
 class CardItem {
   final String assetImage;
   final String title;
@@ -9,12 +12,6 @@ class CardItem {
 
 List<CardItem> items = [
   CardItem(
-    assetImage: 'assets/batman.png',
-    title: 'Batman 2',
-    price: '\$ 49',
-    genre: 'Adventure',
-  ),
-  CardItem(
     assetImage: 'assets/spiderman.png',
     title: 'The Amazing Spiderman',
     price: '\$ 66',
@@ -24,6 +21,12 @@ List<CardItem> items = [
     assetImage: 'assets/xmen.png',
     title: 'The X-men',
     price: '\$ 45',
+    genre: 'Adventure',
+  ),
+  CardItem(
+    assetImage: 'assets/batman.png',
+    title: 'Batman 2',
+    price: '\$ 49',
     genre: 'Adventure',
   ),
 ];
@@ -56,4 +59,29 @@ List<Comics> comicsList = [
     genre: 'Superhero',
     assets: 'assets/xmen.png',
   ),
+];
+
+class Genres {
+  final String name;
+  final IconData icon;
+  final Color color;
+  Genres({required this.name, required this.icon, required this.color});
+}
+
+List<Genres> allGenres = [
+  Genres(name: "Action", icon: Icons.track_changes_outlined, color: Colors.red),
+  Genres(name: "Comedy", icon: Icons.emoji_emotions, color: Colors.yellow),
+  Genres(name: "Romance", icon: EvaIcons.heart, color: Colors.pink),
+  Genres(name: "Informative", icon: Icons.filter_b_and_w_sharp, color: Colors.orange),
+  Genres(name: "Drama", icon: Icons.dark_mode_sharp, color: Colors.white),
+  Genres(name: "Fantasy", icon: Icons.star_border, color: Colors.cyan),
+  Genres(name: "Slice of life", icon: Icons.sunny, color: Colors.purple),
+  Genres(name: "Superhero", icon: Icons.star_half_rounded, color: Colors.white),
+  Genres(name: "Sci-fi", icon: Icons.catching_pokemon, color: Colors.orange),
+  Genres(name: "Thriller", icon: Icons.run_circle_outlined, color: Colors.grey),
+  Genres(name: "Supernatural", icon: Icons.man_2_rounded, color: Colors.green),
+  Genres(name: "Mystery", icon: Icons.multitrack_audio_rounded, color: Colors.blue),
+  Genres(name: "Sports", icon: Icons.games, color: Colors.limeAccent),
+  Genres(name: "Historical", icon: Icons.book, color: Colors.indigo),
+  Genres(name: "Heart-warming", icon: Icons.heart_broken, color: Colors.teal),
 ];
