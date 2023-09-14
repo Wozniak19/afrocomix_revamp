@@ -15,19 +15,19 @@ List<CardItem> items = [
     assetImage: 'assets/spiderman.png',
     title: 'The Amazing Spiderman',
     price: '\$ 66',
-    genre: 'Adventure',
+    genre: 'Action',
   ),
   CardItem(
     assetImage: 'assets/xmen.png',
     title: 'The X-men',
     price: '\$ 45',
-    genre: 'Adventure',
+    genre: 'Action',
   ),
   CardItem(
     assetImage: 'assets/batman.png',
     title: 'Batman 2',
     price: '\$ 49',
-    genre: 'Adventure',
+    genre: 'Action',
   ),
 ];
 
@@ -44,19 +44,19 @@ List<Comics> comicsList = [
   Comics(
     name: 'Spider-Man',
     pages: 32,
-    genre: 'Adventure',
+    genre: 'Action',
     assets: 'assets/spiderman.png',
   ),
   Comics(
     name: 'Batman',
     pages: 28,
-    genre: 'Superhero',
+    genre: 'Action',
     assets: 'assets/batman.png',
   ),
   Comics(
     name: 'X-Men',
     pages: 36,
-    genre: 'Superhero',
+    genre: 'Action',
     assets: 'assets/xmen.png',
   ),
 ];
@@ -69,19 +69,20 @@ class Genres {
 }
 
 List<Genres> allGenres = [
+  Genres(name: "All", icon: Icons.backup_table_sharp, color: Colors.white),
   Genres(name: "Action", icon: Icons.track_changes_outlined, color: Colors.red),
   Genres(name: "Comedy", icon: Icons.emoji_emotions, color: Colors.yellow),
+  Genres(name: "Supernatural", icon: Icons.man_2_rounded, color: Colors.green),
   Genres(name: "Romance", icon: EvaIcons.heart, color: Colors.pink),
   Genres(name: "Informative", icon: Icons.filter_b_and_w_sharp, color: Colors.orange),
-  Genres(name: "Drama", icon: Icons.dark_mode_sharp, color: Colors.white),
+  Genres(name: "Drama", icon: Icons.dark_mode_sharp, color: Colors.black38),
   Genres(name: "Fantasy", icon: Icons.star_border, color: Colors.cyan),
   Genres(name: "Slice of life", icon: Icons.sunny, color: Colors.purple),
   Genres(name: "Superhero", icon: Icons.star_half_rounded, color: Colors.white),
   Genres(name: "Sci-fi", icon: Icons.catching_pokemon, color: Colors.orange),
   Genres(name: "Thriller", icon: Icons.run_circle_outlined, color: Colors.grey),
-  Genres(name: "Supernatural", icon: Icons.man_2_rounded, color: Colors.green),
   Genres(name: "Mystery", icon: Icons.multitrack_audio_rounded, color: Colors.blue),
   Genres(name: "Sports", icon: Icons.games, color: Colors.limeAccent),
-  Genres(name: "Historical", icon: Icons.book, color: Colors.indigo),
+  Genres(name: "Historical", icon: Icons.account_balance_outlined, color: Colors.indigo),
   Genres(name: "Heart-warming", icon: Icons.heart_broken, color: Colors.teal),
 ];
