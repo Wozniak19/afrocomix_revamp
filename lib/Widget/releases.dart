@@ -11,7 +11,7 @@ class Releases extends StatelessWidget {
       height: context.screenHeight * .2,
       width: context.screenWidth,
       decoration: BoxDecoration(
-        color: Colors.grey.shade800,
+        color: Colors.grey.shade500,
         borderRadius: BorderRadius.circular(9),
       ),
       child: Column(

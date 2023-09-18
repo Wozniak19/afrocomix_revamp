@@ -18,6 +18,7 @@ class GenreTile extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 7.5, vertical: context.screenHeight * 0.013),
             child: InkWell(
+              splashColor: allGenres[index].color.withOpacity(.5),
               onTap: () {},
               borderRadius: BorderRadius.circular(9),
               child: SizedBox(

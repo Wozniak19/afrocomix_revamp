@@ -1,3 +1,4 @@
+import 'package:afrocomix/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -27,15 +28,21 @@ class _GenreState extends State<Genre> {
           ],
           elevation: 0,
           bottom: TabBar(
+            onTap: (value) {
+              setState(() {
+                currentGenre = value;
+              });
+            },
+            splashBorderRadius: BorderRadius.circular(15),
             isScrollable: true,
             indicatorColor: Colors.amber,
-            padding: EdgeInsets.symmetric(vertical: 2),
+            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
             labelStyle: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500),
             unselectedLabelStyle: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500),
             indicatorSize: TabBarIndicatorSize.label,
             indicatorWeight: 4,
             labelColor: Colors.white,
-            unselectedLabelColor: Colors.grey.shade700,
+            unselectedLabelColor: Colors.grey.shade400,
             tabs: List.generate(
               allGenres.length,
               (index) => Tab(

@@ -4,7 +4,8 @@ import 'package:velocity_x/velocity_x.dart';
 import '../utils/classes.dart';
 
 class TopHits extends StatelessWidget {
-  const TopHits({super.key});
+  final bool isDark;
+  const TopHits({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class TopHits extends StatelessWidget {
             flex: 2,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.grey.shade800.withOpacity(.4),
+                color: isDark ? Colors.grey.shade800.withOpacity(.4) : Colors.grey.shade300,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(9),
                   topRight: Radius.circular(9),
