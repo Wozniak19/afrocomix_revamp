@@ -33,7 +33,7 @@ class TopHits extends StatelessWidget {
             flex: 2,
             child: Container(
               decoration: BoxDecoration(
-                color: isDark ? Colors.grey.shade800.withOpacity(.4) : Colors.grey.shade300,
+                color: isDark ? Colors.grey.shade800.withOpacity(.6) : Colors.grey.shade300,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(9),
                   topRight: Radius.circular(9),
@@ -52,7 +52,7 @@ class TopHits extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               decoration: BoxDecoration(
-                color: Colors.grey.shade700.withOpacity(.7),
+                color: isDark ? Colors.grey.shade700.withOpacity(.7) : Colors.grey.shade500.withOpacity(.7),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(9),
                   bottomRight: Radius.circular(9),
@@ -67,7 +67,7 @@ class TopHits extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        item.title.text.semiBold.align(TextAlign.left).make(),
+                        item.title.text.semiBold.align(TextAlign.left).scale(1.1).make(),
                         const Padding(
                           padding: EdgeInsets.only(left: 8.0),
                           child: Icon(
@@ -78,7 +78,7 @@ class TopHits extends StatelessWidget {
                         )
                       ],
                     ),
-                    "# ${index + 1} comic in 2022".text.gray200.scale(.9).make()
+                    "# ${index + 1} comic in 2022".text.scale(.9).make()
                   ],
                 ),
               ),

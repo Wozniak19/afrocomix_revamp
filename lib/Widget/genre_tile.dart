@@ -7,7 +7,7 @@ class GenreTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: context.screenHeight * 0.21,
       width: context.screenWidth,
       // color: Colors.red,
@@ -39,7 +39,7 @@ class GenreTile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     allGenres[index].name.text.semiBold.scale(1.1).make(),

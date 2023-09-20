@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:afrocomix/Widget/top_hits.dart';
-import 'package:afrocomix/main.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ import '../Widget/releases.dart';
 import '../services/theme_model.dart';
 import '../utils/classes.dart';
 import '../Widget/scroll_card.dart';
-import '../utils/variables.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -35,6 +33,26 @@ class _HomeState extends State<Home> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: Column(
               children: [
+                SizedBox(
+                  height: context.screenHeight * 0.08,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          print(!Scaffold.hasDrawer(context));
+                          Navigator.pop(context);
+                        },
+                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15)),
+                        child: Icon(
+                          CupertinoIcons.xmark,
+                          size: 15,
+                        ).box.red600.roundedSM.height(30).margin(EdgeInsets.all(15)).width(30).alignCenter.make(),
+                      ),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(28.0),
                   child: Image.asset(
@@ -60,8 +78,9 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        // extendBodyBehindAppBar: true,
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
+          iconTheme: IconThemeData(color: themeNotifier.isDark ? Colors.white : Colors.black),
           centerTitle: true,
           backgroundColor: Colors.transparent,
           title: Padding(
@@ -69,7 +88,8 @@ class _HomeState extends State<Home> {
             child: Image.asset(
               'assets/Letiarts_Logo.png',
               height: 20,
-            ),
+              // width: 150,
+            ).box.color(themeNotifier.isDark ? Colors.white : Colors.transparent).alignCenter.px1.py4.roundedSM.make(),
           ),
           actions: [
             Container(
@@ -83,22 +103,45 @@ class _HomeState extends State<Home> {
           elevation: 0,
         ),
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               //Top Hits
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: "Top hits".text.size(19).bold.align(TextAlign.left).make(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 8.0),
+                        child: "Top hits".text.size(19).bold.align(TextAlign.left).make(),
+                      ),
+                      IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
+                    ],
                   ),
-                  IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
+                  TopHits(
+                    isDark: themeNotifier.isDark,
+                  ),
                 ],
-              ),
-              TopHits(
-                isDark: themeNotifier.isDark,
-              ),
+              )
+                  .box
+                  .radialGradient(
+                    [
+                      Colors.cyanAccent.shade700.withOpacity(.4),
+                      Colors.red.shade900.withOpacity(.4),
+                      Colors.blue.shade900.withOpacity(.45),
+                      Colors.green.shade700.withOpacity(.9),
+                      Colors.green.shade500.withOpacity(.9),
+                      Colors.black,
+                      Colors.transparent,
+                      Colors.transparent
+                    ],
+                    radius: 3.5,
+                    focalRadius: 6,
+                    center: Alignment.topLeft,
+                  )
+                  .padding(EdgeInsets.only(top: context.screenHeight * 0.08))
+                  .make(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Divider(
@@ -133,7 +176,10 @@ class _HomeState extends State<Home> {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(16),
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (contex) => intro(item: items[index], index: index, context: context)));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (contex) => intro(item: items[index], index: index, context: context, isDark: themeNotifier.isDark)));
                             },
                             child: SizedBox(
                               width: context.screenWidth * 0.7,
@@ -150,7 +196,11 @@ class _HomeState extends State<Home> {
                                             .text
                                             .scale(1.5)
                                             .bold
-                                            // .color(index + 1 == 1 ? Colors.amber : Colors.white)
+                                            .color(index + 1 == 1
+                                                ? Colors.amber
+                                                : themeNotifier.isDark
+                                                    ? Colors.white
+                                                    : Colors.black)
                                             .center
                                             .make(),
                                       ),
@@ -207,7 +257,9 @@ class _HomeState extends State<Home> {
                   IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
                 ],
               ),
-              ScrollCard(),
+              ScrollCard(
+                isDark: themeNotifier.isDark,
+              ),
               SizedBox(
                 height: context.screenHeight * 0.03,
               ),
@@ -237,17 +289,18 @@ class _HomeState extends State<Home> {
     });
   }
 
-  Widget intro({required CardItem item, required int index, required BuildContext context}) => Material(
+  Widget intro({required CardItem item, required int index, required BuildContext context, required bool isDark}) => Material(
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
+            iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black),
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
           body: Container(
             height: context.screenHeight,
             width: context.screenWidth,
-            color: Colors.grey.shade900,
+            // color: Colors.grey.shade900,
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Column(

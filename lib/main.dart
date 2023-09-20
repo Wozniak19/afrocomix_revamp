@@ -8,6 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:afrocomix/utils/variables.dart';
 
 import 'Tabs/genre.dart';
+import 'Tabs/more.dart';
 import 'Tabs/my_activities.dart';
 import 'Tabs/schedule.dart';
 import 'services/theme_model.dart';
@@ -24,21 +25,26 @@ class AfroComix extends StatefulWidget {
 }
 
 String title = 'Afrocomix';
-List<Widget> pages = [
-  Home(),
-  Schedule(),
-  Genre(),
-  MyActivities(),
-  buildPage('More Page'),
-];
 
 class _AfroComixState extends State<AfroComix> {
-  ThemeMode _themeMode = ThemeMode.system;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => ThemeModal(),
       child: Consumer(builder: (context, ThemeModal themeModal, child) {
+        List<Widget> pages = [
+          Home(),
+          Schedule(
+            isDark: themeModal.isDark,
+          ),
+          Genre(
+            isDark: themeModal.isDark,
+          ),
+          MyActivities(
+            isDark: themeModal.isDark,
+          ),
+          More(),
+        ];
         return MaterialApp(
           // theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
           theme: themeModal.isDark ? ThemeData.dark() : ThemeData.light(),
@@ -78,12 +84,6 @@ class _AfroComixState extends State<AfroComix> {
         );
       }),
     );
-  }
-
-  void chamgeTheme(ThemeMode themeMode) {
-    setState(() {
-      _themeMode = themeMode;
-    });
   }
 }
 

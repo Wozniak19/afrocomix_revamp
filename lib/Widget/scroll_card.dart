@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -6,7 +6,8 @@ import 'package:palette_generator/palette_generator.dart';
 import '../utils/classes.dart';
 
 class ScrollCard extends StatefulWidget {
-  const ScrollCard({super.key});
+  final bool isDark;
+  const ScrollCard({super.key, required this.isDark});
 
   @override
   State<ScrollCard> createState() => _ScrollCardState();
@@ -22,7 +23,7 @@ class _ScrollCardState extends State<ScrollCard> {
           scrollDirection: Axis.horizontal,
           itemCount: 3,
           separatorBuilder: (context, index) => SizedBox(width: 12),
-          itemBuilder: (context, index) => buildCard(item: items[index])),
+          itemBuilder: (context, index) => buildCard(item: items[index], isDark: widget.isDark)),
     );
   }
 
@@ -35,13 +36,13 @@ class _ScrollCardState extends State<ScrollCard> {
     return paletteGenerator;
   }
 
-  Widget buildCard({required CardItem item}) => InkWell(
+  Widget buildCard({required CardItem item, required bool isDark}) => InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () async {
           final String imageUrl = item.assetImage; // Replace with your image URL
           final PaletteGenerator palette = await generatePalette(imageUrl);
           Color dominantColor = palette.dominantColor!.color;
-          Navigator.push(context, MaterialPageRoute(builder: (contex) => intro(item: item, dominantColor: dominantColor)));
+          Navigator.push(context, MaterialPageRoute(builder: (contex) => intro(item: item, dominantColor: dominantColor, isDark: isDark)));
         },
         child: Container(
           decoration: BoxDecoration(
@@ -69,11 +70,12 @@ class _ScrollCardState extends State<ScrollCard> {
         ),
       );
 
-  Widget intro({required CardItem item, required Color dominantColor}) => Material(
+  Widget intro({required CardItem item, required Color dominantColor, required bool isDark}) => Material(
         child: Scaffold(
           extendBodyBehindAppBar: true,
           backgroundColor: dominantColor.withOpacity(.8),
           appBar: AppBar(
+            iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black),
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
@@ -81,7 +83,8 @@ class _ScrollCardState extends State<ScrollCard> {
             height: context.screenHeight,
             width: context.screenWidth,
             decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [Colors.transparent, Colors.grey.shade900], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                gradient: LinearGradient(
+                    colors: [Colors.transparent, isDark ? Colors.grey.shade900 : Colors.white], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Column(
@@ -99,7 +102,7 @@ class _ScrollCardState extends State<ScrollCard> {
                     ),
                   ),
                   item.title.text.scale(2).bold.center.make(),
-                  item.genre.text.scale(1.5).semiBold.gray400.make(),
+                  item.genre.text.scale(1.5).semiBold.color(isDark ? Colors.grey.shade400 : Colors.black).make(),
                 ],
               ),
             ),

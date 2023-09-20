@@ -28,7 +28,7 @@ class Releases extends StatelessWidget {
             flex: 1,
             child: Container(
               color: Colors.transparent,
-              margin: EdgeInsets.symmetric(horizontal: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               height: double.maxFinite,
               width: double.maxFinite,
               child: "Batman 2 has now been released, check it out now"
