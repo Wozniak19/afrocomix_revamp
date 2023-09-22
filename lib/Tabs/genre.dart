@@ -12,7 +12,7 @@ class Genre extends StatefulWidget {
   State<Genre> createState() => _GenreState();
 }
 
-class _GenreState extends State<Genre> {
+class _GenreState extends State<Genre> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

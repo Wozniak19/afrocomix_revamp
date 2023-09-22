@@ -156,12 +156,12 @@ class More extends StatelessWidget {
 
   Widget slideBox({required String name, required BuildContext context, required bool isDark, required List items}) {
     return Container(
-      height: context.screenHeight * .6,
+      // height: context.screenHeight * .6,
       width: context.screenWidth,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       decoration: BoxDecoration(
-        color: isDark ? Colors.grey.shade900 : Colors.white,
+        color: isDark ? Colors.grey.shade800 : Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(

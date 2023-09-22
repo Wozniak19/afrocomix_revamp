@@ -62,7 +62,7 @@ class _ScrollCardState extends State<ScrollCard> {
                 ),
               ),
               SizedBox(height: 4),
-              item.genre.text.scale(0.9).gray300.make(),
+              item.genre.text.scale(0.99).color(isDark ? Colors.grey.shade400 : Colors.grey.shade900).semiBold.make(),
               // SizedBox.expand(),
               item.title.text.scale(1.2).align(TextAlign.center).bold.make(),
             ],
