@@ -1,9 +1,12 @@
 import 'package:afrocomix/services/theme_model.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:switcher_button/switcher_button.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../Pages/log_in.dart';
 
 class More extends StatelessWidget {
   const More({super.key});
@@ -33,9 +36,17 @@ class More extends StatelessWidget {
                   height: context.screenHeight * 0.02,
                 ),
                 topic(name: "Account", context: context, isDark: themeNotifier.isDark),
-                const ListTile(
-                  title: Text("Log in"),
-                  trailing: Icon(EvaIcons.arrowIosForward),
+                ListTile(
+                  title: const Text("Log in"),
+                  trailing: const Icon(EvaIcons.arrowIosForward),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => LogIn(
+                                  isDark: themeNotifier.isDark,
+                                )));
+                  },
                 ),
                 const Divider().px16(),
                 const ListTile(
@@ -63,8 +74,8 @@ class More extends StatelessWidget {
                 ),
                 const Divider().px16(),
                 ListTile(
-                  title: Text("Image resolution"),
-                  trailing: Icon(EvaIcons.arrowIosForward),
+                  title: const Text("Image resolution"),
+                  trailing: const Icon(EvaIcons.arrowIosForward),
                   onTap: () {
                     showModalBottomSheet(
                         backgroundColor: Colors.transparent,

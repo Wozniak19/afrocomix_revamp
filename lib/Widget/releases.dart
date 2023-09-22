@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Releases extends StatelessWidget {
-  const Releases({super.key});
+  final bool isDark;
+  const Releases({super.key, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class Releases extends StatelessWidget {
       height: context.screenHeight * .2,
       width: context.screenWidth,
       decoration: BoxDecoration(
-        color: Colors.grey.shade500,
+        color: isDark ? Colors.grey.shade800 : Colors.grey.shade400,
         borderRadius: BorderRadius.circular(9),
       ),
       child: Column(

@@ -10,7 +10,7 @@ class TopHits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.screenHeight * 0.25,
+      height: context.screenHeight * 0.3,
       width: context.screenWidth,
       color: Colors.transparent,
       child: ListView.builder(
@@ -50,9 +50,10 @@ class TopHits extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
+              padding: EdgeInsets.only(top: 5),
               width: double.maxFinite,
               decoration: BoxDecoration(
-                color: isDark ? Colors.grey.shade700.withOpacity(.7) : Colors.grey.shade500.withOpacity(.7),
+                color: isDark ? Colors.grey.shade700.withOpacity(.7) : Colors.grey.shade300.withOpacity(.4),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(9),
                   bottomRight: Radius.circular(9),

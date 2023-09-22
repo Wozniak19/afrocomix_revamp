@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
     return Consumer(builder: (context, ThemeModal themeNotifier, child) {
       return Scaffold(
         drawer: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+          padding: EdgeInsets.only(bottom: 15, left: 12, top: context.screenHeight * 0.08),
           child: Drawer(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: Column(
@@ -108,6 +108,7 @@ class _HomeState extends State<Home> {
             children: [
               //Top Hits
               Column(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,9 +129,9 @@ class _HomeState extends State<Home> {
                   .radialGradient(
                     [
                       Colors.cyanAccent.shade700.withOpacity(.4),
-                      Colors.red.shade900.withOpacity(.4),
-                      Colors.blue.shade900.withOpacity(.45),
-                      Colors.green.shade700.withOpacity(.9),
+                      Colors.red.shade900.withOpacity(themeNotifier.isDark ? .4 : .25),
+                      Colors.blue.shade900.withOpacity(themeNotifier.isDark ? .55 : .2),
+                      Colors.green.shade700.withOpacity(themeNotifier.isDark ? .9 : .4),
                       Colors.green.shade500.withOpacity(.9),
                       Colors.black,
                       Colors.transparent,
@@ -140,7 +141,14 @@ class _HomeState extends State<Home> {
                     focalRadius: 6,
                     center: Alignment.topLeft,
                   )
+                  // .linearGradient(
+                  //   [Color(0xFFDD2476).withOpacity(.5), Color(0xFFFF512F).withOpacity(.5)],
+                  //   begin: Alignment.topLeft,
+                  //   end: Alignment.bottomRight,
+                  //   stops: [0.0, 1.0],
+                  // )
                   .padding(EdgeInsets.only(top: context.screenHeight * 0.08))
+                  .height(context.screenHeight * 0.5)
                   .make(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -217,7 +225,13 @@ class _HomeState extends State<Home> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         comicsList[index].name.text.semiBold.scale(1.2).overflow(TextOverflow.ellipsis).make(),
-                                        comicsList[index].genre.text.semiBold.scale(0.8).gray400.make(),
+                                        comicsList[index]
+                                            .genre
+                                            .text
+                                            .fontWeight(FontWeight.w700)
+                                            .scale(0.85)
+                                            .color(themeNotifier.isDark ? Colors.grey.shade400 : Colors.grey.shade800)
+                                            .make(),
                                       ],
                                     ),
                                   )
@@ -274,7 +288,9 @@ class _HomeState extends State<Home> {
                   IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowForward)),
                 ],
               ),
-              Releases(),
+              Releases(
+                isDark: themeNotifier.isDark,
+              ),
               SizedBox(
                 height: context.screenHeight * 0.03,
               ),
