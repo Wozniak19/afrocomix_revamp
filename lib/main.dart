@@ -48,9 +48,7 @@ class _AfroComixState extends State<AfroComix> {
           More(),
         ];
         return MaterialApp(
-          // theme: darkTheme ? ThemeData.dark() : ThemeData.light(),
           theme: themeModal.isDark ? ThemeData.dark() : ThemeData.light(),
-
           debugShowCheckedModeBanner: false,
           home: Consumer(
             builder: (context, ThemeModal themeNotifier, child) {
