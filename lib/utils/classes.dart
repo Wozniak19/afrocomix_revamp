@@ -7,7 +7,17 @@ class CardItem {
   final String title;
   final String price;
   final String genre;
-  const CardItem({required this.assetImage, required this.title, required this.price, required this.genre});
+  final int episodeNum;
+  final String about;
+  final String id;
+  const CardItem(
+      {required this.episodeNum,
+      required this.id,
+      required this.about,
+      required this.assetImage,
+      required this.title,
+      required this.price,
+      required this.genre});
 }
 
 class Comics {
@@ -44,40 +54,52 @@ List<Genres> allGenres = [
   Genres(name: "Historical", icon: Icons.account_balance_outlined, color: Colors.indigo),
   Genres(name: "Heart-warming", icon: Icons.heart_broken, color: Colors.teal),
 ];
-List<Comics> comicsList = [
-  Comics(
-    name: 'Spider-Man',
-    pages: 32,
-    genre: 'Action',
-    assets: 'assets/spiderman.png',
-  ),
-  Comics(
-    name: 'Batman',
-    pages: 28,
-    genre: 'Action',
-    assets: 'assets/batman.png',
-  ),
-  Comics(
-    name: 'X-Men',
-    pages: 36,
-    genre: 'Action',
-    assets: 'assets/xmen.png',
-  ),
-];
+// List<Comics> comicsList = [
+//   Comics(
+//     name: 'Spider-Man',
+//     pages: 32,
+//     genre: 'Action',
+//     assets: 'assets/spiderman.png',
+//   ),
+//   Comics(
+//     name: 'Batman',
+//     pages: 28,
+//     genre: 'Action',
+//     assets: 'assets/batman.png',
+//   ),
+//   Comics(
+//     name: 'X-Men',
+//     pages: 36,
+//     genre: 'Action',
+//     assets: 'assets/xmen.png',
+//   ),
+// ];
 List<CardItem> items = [
   CardItem(
+    id: "amaz_spid",
+    episodeNum: 18,
+    about:
+        "After Peter Parker is bitten by a genetically altered spider, he gains newfound, spider-like powers and ventures out to save the city from the machinations of a mysterious reptilian foe.",
     assetImage: 'assets/spiderman.png',
     title: 'The Amazing Spiderman',
     price: '\$ 66',
     genre: 'Action',
   ),
   CardItem(
+    id: "x_men",
+    episodeNum: 62,
+    about:
+        "They are children of the atom, homo superior, the next link in the chain of evolution. Each was born with a unique genetic mutation, which at puberty manifested itself in extraordinary powers. In a world filled with hate and prejudice, they are feared by those who cannot accept their differences. Led by Xavier the X-Men fight to protect a world that fears them. They are locked in a battle with former colleague and friend, Magneto who believes humans and mutants should never co-exist.",
     assetImage: 'assets/xmen.png',
     title: 'The X-men',
     price: '\$ 45',
     genre: 'Action',
   ),
   CardItem(
+    id: "batm",
+    episodeNum: 25,
+    about:
+        "After witnessing the murder of his parents Dr. Thomas Wayne and Martha Wayne as a child, he swore vengeance against criminals, an oath tempered by a sense of justice. Bruce Wayne trains himself physically and intellectually and crafts a bat-inspired persona to fight crime.",
     assetImage: 'assets/batman.png',
     title: 'Batman 2',
     price: '\$ 49',

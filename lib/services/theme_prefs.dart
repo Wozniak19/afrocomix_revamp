@@ -13,3 +13,17 @@ class ThemePrefs {
     return sharedPreferences.getBool(PREF_KEY) ?? false;
   }
 }
+
+class TabPrefs {
+  // ignore: constant_identifier_names
+  static const PRF_KEY = 'TAB_KEY';
+  setTab(bool value) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool(PRF_KEY, value);
+  }
+
+  getTab() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getBool(PRF_KEY) ?? false;
+  }
+}

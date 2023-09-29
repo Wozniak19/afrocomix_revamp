@@ -33,57 +33,60 @@ class _AfroComixState extends State<AfroComix> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => ThemeModal(),
-      child: Consumer(builder: (context, ThemeModal themeModal, child) {
-        List<Widget> pages = [
-          Home(),
-          Schedule(
-            isDark: themeModal.isDark,
-          ),
-          Genre(
-            isDark: themeModal.isDark,
-          ),
-          MyActivities(
-            isDark: themeModal.isDark,
-          ),
-          More(),
-        ];
-        return MaterialApp(
-          theme: themeModal.isDark ? ThemeData.dark() : ThemeData.light(),
-          debugShowCheckedModeBanner: false,
-          home: Consumer(
-            builder: (context, ThemeModal themeNotifier, child) {
-              return DefaultTabController(
-                length: 3,
-                child: Scaffold(
-                  body: pages[currentPage],
-                  bottomNavigationBar: Container(
-                    color: themeNotifier.isDark ? Colors.grey.shade800 : Colors.grey.shade300,
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: NavigationBar(
-                      backgroundColor: themeNotifier.isDark ? Colors.grey.shade800 : Colors.grey.shade300,
-                      elevation: 0,
-                      destinations: [
-                        NavigationDestination(icon: Icon(EvaIcons.heartOutline), label: 'For you').px(2.5),
-                        NavigationDestination(icon: Icon(EvaIcons.calendar), label: 'Schedule').px(2.5),
-                        NavigationDestination(icon: Icon(EvaIcons.list), label: 'Genre').px(2.5),
-                        NavigationDestination(icon: Icon(EvaIcons.person), label: 'My').px(2.5),
-                        NavigationDestination(icon: Icon(EvaIcons.moreHorizontal), label: 'More').px(2.5),
-                      ],
-                      indicatorColor: Colors.orange.shade500,
-                      selectedIndex: currentPage,
-                      onDestinationSelected: (value) {
-                        setState(() {
-                          currentPage = value;
-                        });
-                      },
+      child: ChangeNotifierProvider(
+        create: (_) => TabModal(),
+        child: Consumer(builder: (context, ThemeModal themeModal, child) {
+          List<Widget> pages = [
+            Home(),
+            Schedule(
+              isDark: themeModal.isDark,
+            ),
+            Genre(
+              isDark: themeModal.isDark,
+            ),
+            MyActivities(
+              isDark: themeModal.isDark,
+            ),
+            More(),
+          ];
+          return MaterialApp(
+            theme: themeModal.isDark ? ThemeData.dark() : ThemeData.light(),
+            debugShowCheckedModeBanner: false,
+            home: Consumer(
+              builder: (context, ThemeModal themeNotifier, child) {
+                return DefaultTabController(
+                  length: 3,
+                  child: Scaffold(
+                    body: pages[currentPage],
+                    bottomNavigationBar: Container(
+                      color: themeNotifier.isDark ? Colors.grey.shade800 : Colors.grey.shade300,
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: NavigationBar(
+                        backgroundColor: themeNotifier.isDark ? Colors.grey.shade800 : Colors.grey.shade300,
+                        elevation: 0,
+                        destinations: [
+                          NavigationDestination(icon: Icon(EvaIcons.heartOutline), label: 'For you').px(2.5),
+                          NavigationDestination(icon: Icon(EvaIcons.calendar), label: 'Schedule').px(2.5),
+                          NavigationDestination(icon: Icon(EvaIcons.list), label: 'Genre').px(2.5),
+                          NavigationDestination(icon: Icon(EvaIcons.person), label: 'My').px(2.5),
+                          NavigationDestination(icon: Icon(EvaIcons.moreHorizontal), label: 'More').px(2.5),
+                        ],
+                        indicatorColor: Colors.orange.shade500,
+                        selectedIndex: currentPage,
+                        onDestinationSelected: (value) {
+                          setState(() {
+                            currentPage = value;
+                          });
+                        },
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-          ),
-        );
-      }),
+                );
+              },
+            ),
+          );
+        }),
+      ),
     );
   }
 }

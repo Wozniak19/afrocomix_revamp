@@ -22,3 +22,25 @@ class ThemeModal extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+class TabModal extends ChangeNotifier {
+  late bool _isPrev;
+  late TabPrefs tabSharedPreferences;
+  bool get isPrev => _isPrev;
+  TabModal() {
+    _isPrev = false;
+    tabSharedPreferences = TabPrefs();
+    getTabPrefs();
+  }
+
+  set isPrev(bool value) {
+    _isPrev = value;
+    tabSharedPreferences.setTab(value);
+    notifyListeners();
+  }
+
+  getTabPrefs() async {
+    _isPrev = await tabSharedPreferences.getTab();
+    notifyListeners();
+  }
+}

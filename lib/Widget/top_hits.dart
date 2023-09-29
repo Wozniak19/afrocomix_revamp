@@ -12,8 +12,20 @@ class TopHits extends StatelessWidget {
     return Container(
       height: context.screenHeight * 0.3,
       width: context.screenWidth,
-      color: Colors.transparent,
+      // decoration: const BoxDecoration(
+      //   gradient: LinearGradient(
+      //       tileMode: TileMode.repeated,
+      //       colors: [
+      //         Colors.transparent,
+      //         Colors.transparent,
+      //         Colors.transparent,
+      //         Colors.white,
+      //       ],
+      //       begin: Alignment.topCenter,
+      //       end: Alignment.bottomCenter),
+      // ),
       child: ListView.builder(
+          physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemCount: items.length,
           itemBuilder: (context, index) {
@@ -26,14 +38,17 @@ class TopHits extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: context.screenHeight * 0.02, horizontal: 10),
       width: context.screenWidth * 0.8,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(9), color: Colors.transparent),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(9),
+        // color: Colors.transparent,
+      ),
       child: Column(
         children: [
           Expanded(
             flex: 2,
             child: Container(
               decoration: BoxDecoration(
-                color: isDark ? Colors.grey.shade800.withOpacity(.6) : Colors.grey.shade300,
+                color: isDark ? Colors.grey.shade800.withOpacity(.6) : Colors.grey.shade100,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(9),
                   topRight: Radius.circular(9),
@@ -53,7 +68,7 @@ class TopHits extends StatelessWidget {
               padding: EdgeInsets.only(top: 5),
               width: double.maxFinite,
               decoration: BoxDecoration(
-                color: isDark ? Colors.grey.shade700.withOpacity(.7) : Colors.grey.shade300.withOpacity(.4),
+                color: isDark ? Colors.grey.shade700.withOpacity(.7) : Colors.grey.shade200,
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(9),
                   bottomRight: Radius.circular(9),
